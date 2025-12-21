@@ -6,15 +6,20 @@ import os
 from groq import Groq
 from dotenv import load_dotenv
 
+from pathlib import Path
+
 load_dotenv()
 
 app = FastAPI()
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# Get absolute path for Vercel compatibility
+BASE_DIR = Path(__file__).resolve().parent
+
+app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
 
 @app.get("/")
 async def read_root():
-    return FileResponse('static/index.html')
+    return FileResponse(BASE_DIR / 'static/index.html')
 
 class UserRequest(BaseModel):
     content: str
