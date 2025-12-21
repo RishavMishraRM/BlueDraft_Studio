@@ -1,0 +1,126 @@
+
+---
+
+# 🧱 BlueDraft Studio — Day 1 (Build Plan)
+
+### 🎯 Objective of Day 1
+
+Not coding yet.
+Today is about **clarity + setup**, so the next days don’t feel overwhelming.
+
+You’re building a **Free AI Content & Research Agent (LinkedIn-first)**.
+Day 1 = *decide what it will do in v1*.
+
+---
+
+## ⏱️ Time Commitment (30–40 mins max)
+
+### ✅ Task 1: Lock V1 Scope (15 mins)
+
+Answer these **only in bullet points** (no perfection):
+
+**BlueDraft Studio v1 will do ONLY this:**
+
+* Input: Topic + intent (e.g., “AI trends for PMs”)
+* Output:
+
+  * 1 research-backed LinkedIn post
+  * Clean structure (hook → body → takeaway)
+  * Optional hashtags
+* Tone: Professional, clear, non-cringe
+* Platform: LinkedIn only (no Twitter, no blog)
+
+❌ It will NOT do:
+
+* Scheduling
+* Analytics
+* Multi-platform posting
+* Fancy UI
+* User accounts
+
+👉 This keeps it **finishable**.
+
+---
+
+### ✅ Task 2: Decide the 2 Models (10 mins)
+
+You already said **2 models**. For Day 1, just *decide*, don’t integrate.
+
+**Recommended (FREE / generous tiers):**
+
+1. **LLM for drafting**
+
+   * OpenAI GPT-4o-mini / GPT-4.1-mini (cheap & good)
+   * OR Gemini 1.5 Flash
+2. **Embedding / Research**
+
+   * OpenAI embeddings
+   * OR Gemini embeddings
+
+Just write this down:
+
+> “V1 will use ___ for drafting and ___ for research.”
+
+That’s it.
+
+---
+
+### ✅ Task 3: Define the Agent Flow (10 mins)
+
+Write this exact flow in a note (this becomes your architecture):
+
+```
+User Input
+↓
+Research Agent
+- Understand topic
+- Pull key points (from search / knowledge)
+↓
+Draft Agent
+- Create LinkedIn post
+- Improve clarity & structure
+↓
+Final Output
+```
+
+No code. Just clarity.
+
+---
+
+### ✅ Task 4: Repo + Folder Setup (5 mins)
+
+Create:
+
+* One GitHub repo (private or public)
+
+  * Name: `bluedraft-studio`
+* Inside it:
+
+  ```
+  /docs
+  /backend
+  /ui
+  README.md
+  ```
+
+In `README.md`, write just this for now:
+
+> **BlueDraft Studio**
+> Free AI Content & Research Agent
+> Built in public.
+> Draft smarter. Post better.
+
+Done.
+
+---
+
+## 🧠 Important Mindset (Read This)
+
+* You are **not building a startup**
+* You are **not racing**
+* You are **learning by shipping**
+* Ugly but working > perfect but imaginary
+
+This pace is **correct** for someone doing this alongside life/work.
+
+---

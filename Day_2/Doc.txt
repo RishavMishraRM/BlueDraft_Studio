@@ -1,0 +1,154 @@
+---
+
+## 🧱 BlueDraft Studio — **Build Day 2 (No Posting Today)**
+
+### 🎯 Goal for Day 2
+
+Today is about **clarity, not code**.
+
+👉 By end of Day 2, you should be *very clear* on:
+
+* What BlueDraft Studio does in v0
+* What it **will NOT** do
+* The exact flow a user will experience
+
+No UI, no deployment yet. Just foundations.
+
+---
+
+## 🧠 Step 1: Lock v0 Scope (MOST IMPORTANT)
+
+### ❌ What BlueDraft Studio is NOT (for now)
+
+Be strict here 👇
+
+* ❌ Not a full social media manager
+* ❌ Not multi-platform (LinkedIn only)
+* ❌ Not auto-posting
+* ❌ Not fancy analytics
+* ❌ Not paid features
+
+This keeps it **finishable**.
+
+---
+
+### ✅ What BlueDraft Studio v0 WILL DO
+
+**One clear promise:**
+
+> “Help me research a topic and draft a strong LinkedIn post.”
+
+That’s it.
+
+---
+
+## 🧩 Step 2: Define the v0 User Flow (Write This Down)
+
+This is the **core of your product**.
+
+### User Flow v0
+
+1. User enters:
+
+   * Topic (e.g. *Agentic AI in marketing*)
+   * Optional tone (default: professional)
+2. User clicks **Generate**
+3. BlueDraft Studio:
+
+   * Thinks through the topic
+   * Suggests key angles
+   * Drafts a LinkedIn-ready post
+4. User:
+
+   * Edits manually
+   * Copies the content
+
+⚠️ No login.
+⚠️ No saving posts.
+⚠️ No publishing.
+
+Simple = powerful.
+
+---
+
+## 🧠 Step 3: Decide the 2 Models (You Mentioned This)
+
+You said: *“with 2 models”* — perfect.
+
+### Model 1: **Research Brain**
+
+Purpose:
+
+* Understand topic
+* Identify key points
+* Avoid hallucination-heavy fluff
+
+Example role prompt:
+
+> “You are a research-focused AI agent.
+> Your job is to think deeply, structure ideas, and highlight important points — not to write marketing copy.”
+
+---
+
+### Model 2: **Drafting Brain**
+
+Purpose:
+
+* Turn research into a **LinkedIn-native post**
+* Clear structure, good hook, readable flow
+
+Example role prompt:
+
+> “You are a LinkedIn content strategist.
+> Write concise, thoughtful posts with a strong opening, clear paragraphs, and a reflective ending.”
+
+⚠️ Today you **only define roles**, not code them.
+
+---
+
+## 🧱 Step 4: Decide Tech Stack (FREE Only)
+
+Write this as your default plan:
+
+* 🧠 Models:
+
+  * Open-source via HuggingFace (e.g. Mistral / Mixtral / Phi)
+* 🖥️ UI:
+
+  * Simple Streamlit or Gradio
+* ☁️ Hosting:
+
+  * HuggingFace Spaces (FREE)
+* 💾 Storage:
+
+  * None (stateless v0)
+
+This aligns perfectly with:
+
+> “Free for me, free for users”
+
+---
+
+## ⏱️ Time Box (30–40 mins only)
+
+Here’s how to spend today:
+
+* 10 min → Write v0 scope (what it does / doesn’t)
+* 10 min → Write user flow
+* 10 min → Define Model 1 & Model 2 roles
+* 5–10 min → Tech stack notes
+
+Stop after that.
+Overworking early kills consistency.
+
+---
+
+## ✅ Day 2 DONE When You Have:
+
+Reply **“Day 2 done”** once you have:
+
+* v0 scope written
+* User flow written
+* Two model roles defined
+
+---

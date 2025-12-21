@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueDraft Studio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap">
+    <style>
+        :root {
+            /* Default: Linkedin Theme */
+            --bg-gradient: radial-gradient(circle at 50% 50%, #161b22 0%, #010409 100%);
+            --accent-gradient: linear-gradient(135deg, #1f6feb 0%, #238636 100%);
+            --accent-color: #58a6ff;
+            --border-color: rgba(56, 139, 253, 0.2);
+            --header-bg: rgba(13, 17, 23, 0.6);
+            --card-bg: rgba(22, 27, 34, 0.7);
+        }
+
+        /* Research Theme Override */
+        [data-theme="research"] {
+            --bg-gradient: radial-gradient(circle at 50% 50%, #0d0630 0%, #000 100%);
+            --accent-gradient: linear-gradient(135deg, #8957e5 0%, #b392f0 100%);
+            --accent-color: #d2a8ff;
+            --border-color: rgba(137, 87, 229, 0.3);
+            --header-bg: rgba(26, 13, 171, 0.1);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Outfit', sans-serif;
+            background: radial-gradient(circle at 50% 50%, #161b22 0%, #010409 100%);
+            /* Initial Home BG */
+            color: #f0f6fc;
+            height: 100vh;
+            overflow: hidden;
+            transition: background 0.8s ease;
+        }
+
+        /* --- Landing Page Styles --- */
+        .landing-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .landing-container.hidden {
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
+        }
+
+        .title-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .title-section h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            background: linear-gradient(to right, #fff, #9ca3af);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .title-section p {
+            font-size: 1.2rem;
+            color: #8b949e;
+            margin-top: 12px;
+        }
+
+        .cards-wrapper {
+            display: flex;
+            gap: 40px;
+        }
+
+        .brain-card {
+            width: 320px;
+            height: 420px;
+            background: rgba(22, 27, 34, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 30px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* Center Vertically */
+            align-items: center;
+            /* Center Horizontally */
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .brain-card img {
+            width: 140px;
+            height: 140px;
+            object-fit: contain;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
+            transition: transform 0.4s ease;
+        }
+
+        .brain-card:hover img {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .brain-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-content h2 {
+            font-size: 1.8rem;
+            margin: 0 0 10px 0;
+        }
+
+        .card-content p {
+            color: #8b949e;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Specific Card Themes */
+        .card-linkedin {
+            background: linear-gradient(180deg, rgba(31, 111, 235, 0.05) 0%, rgba(22, 27, 34, 0.8) 100%);
+        }
+
+        .card-linkedin:hover {
+            box-shadow: 0 0 30px rgba(31, 111, 235, 0.2);
+            border-color: #58a6ff;
+        }
+
+        .card-linkedin h2 {
+            color: #58a6ff;
+        }
+
+        .card-research {
+            background: linear-gradient(180deg, rgba(137, 87, 229, 0.05) 0%, rgba(22, 27, 34, 0.8) 100%);
+        }
+
+        .card-research:hover {
+            box-shadow: 0 0 30px rgba(137, 87, 229, 0.2);
+            border-color: #d2a8ff;
+        }
+
+        .card-research h2 {
+            color: #d2a8ff;
+        }
+
+
+        /* --- Main Chat Interface Styles --- */
+        .main-container {
+            width: 90%;
+            max-width: 1200px;
+            height: 92vh;
+            background-color: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /* Initial State: Hidden, Centered, Scaled Down */
+            transform: translate(-50%, -50%) scale(0.95);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .main-container.active {
+            /* Active State: Visible, Centered, Normal Scale */
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        header.chat-header {
+            padding: 20px 32px;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--header-bg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #c9d1d9;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .chat-area {
+            flex: 1;
+            width: 100%;
+            max-width: 900px;
+            /* Constrain width for better reading experience */
+            margin: 0 auto;
+            /* Center the chat area */
+            padding: 40px 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .chat-area::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-area::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chat-area::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+
+        .message {
+            max-width: 80%;
+            padding: 24px 28px;
+            border-radius: 24px;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            /* Vibrant Blue-Purple */
+            color: white;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .message.bot {
+            align-self: flex-start;
+            background: rgba(30, 41, 59, 0.7);
+            /* Deep Blue-Grey */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom-left-radius: 4px;
+            color: #e2e8f0;
+        }
+
+        /* Markdown-like styling for bot messages */
+        .message.bot strong {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .message.bot br {
+            display: block;
+            content: "";
+            margin-top: 8px;
+        }
+
+        .input-area {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 32px;
+            border-top: 1px solid var(--border-color);
+            background: transparent;
+            /* Remove bg to blend with container */
+            display: flex;
+            gap: 16px;
+        }
+
+        textarea {
+            flex: 1;
+            background-color: rgba(1, 4, 9, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 18px;
+            color: #f0f6fc;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: none;
+            height: 24px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        textarea:focus {
+            border-color: var(--accent-color);
+            background-color: rgba(1, 4, 9, 0.9);
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.05);
+        }
+
+        button.send-btn {
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            padding: 0 36px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        button.send-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        button.send-btn:disabled {
+            opacity: 0.6;
+            cursor: default;
+            transform: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Landing View -->
+    <div class="landing-container" id="landingView">
+        <div class="title-section">
+            <h1>Select Your Brain</h1>
+            <p>Choose the specialized AI model for your workflow.</p>
+        </div>
+
+        <div class="cards-wrapper">
+            <!-- Linkedin Card -->
+            <div class="brain-card card-linkedin" onclick="selectModel('linkedin')">
+                <img src="/static/linkedin_icon.png" alt="Linkedin Brain Icon">
+                <div class="card-content">
+                    <h2>Linkedin Brain</h2>
+                    <p>Draft viral, engaging posts optimized for professional growth and engagement.</p>
+                </div>
+            </div>
+
+            <!-- Research Card -->
+            <div class="brain-card card-research" onclick="selectModel('research')">
+                <img src="/static/research_icon.png" alt="Research Brain Icon">
+                <div class="card-content">
+                    <h2>Research Brain</h2>
+                    <p>Deep dive into complex topics with comprehensive analysis and fact-based answers.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Chat View -->
+    <div class="main-container" id="chatView">
+        <header class="chat-header">
+            <button class="back-btn" onclick="goHome()">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                </svg>
+                Select Brain
+            </button>
+            <h2 id="chatTitle" style="margin:0; font-size: 1.2rem; font-weight:500; color:var(--accent-color)">Current
+                Brain</h2>
+            <div style="width: 80px;"></div> <!-- Spacer for center alignment -->
+        </header>
+
+        <div class="chat-area" id="chatArea">
+            <!-- Messages go here -->
+        </div>
+
+        <div class="input-area">
+            <textarea id="userInput" placeholder="Type here..." rows="1"
+                onkeydown="if(event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); sendMessage(); }"></textarea>
+            <button class="send-btn" onclick="sendMessage()" id="sendBtn">Send</button>
+        </div>
+    </div>
+
+    <script>
+        let currentMode = 'linkedin';
+        const landingView = document.getElementById('landingView');
+        const chatView = document.getElementById('chatView');
+        const chatArea = document.getElementById('chatArea');
+        const userInput = document.getElementById('userInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const chatTitle = document.getElementById('chatTitle');
+
+        function selectModel(mode) {
+            currentMode = mode;
+
+            // Apply Theme
+            document.body.setAttribute('data-theme', mode);
+
+            // Update UI Text
+            if (mode === 'linkedin') {
+                chatTitle.innerText = "Linkedin Drafting Brain";
+                sendBtn.innerText = "Draft";
+                userInput.placeholder = "What topic should I write a post about?";
+                resetChat("Hey! 👋<br>I'm your <b>Linkedin Drafting Brain</b>.<br>Ready to create some viral content?");
+            } else {
+                chatTitle.innerText = "Research Brain";
+                sendBtn.innerText = "Analyze";
+                userInput.placeholder = "Enter a topic for deep research...";
+                resetChat("Greetings 🧠.<br>I am the <b>Research Brain</b>.<br>I am ready to analyze complex topics for you.");
+            }
+
+            // Transition
+            landingView.classList.add('hidden');
+            setTimeout(() => {
+                chatView.classList.add('active');
+                userInput.focus();
+            }, 300);
+        }
+
+        function goHome() {
+            chatView.classList.remove('active');
+            setTimeout(() => {
+                landingView.classList.remove('hidden');
+                // Reset Body BG (Optional, or keep last theme)
+                document.body.removeAttribute('data-theme');
+            }, 300);
+        }
+
+        function resetChat(greeting) {
+            chatArea.innerHTML = '';
+            addMessage(greeting, 'bot');
+        }
+
+        async function sendMessage() {
+            const text = userInput.value.trim();
+            if (!text) return;
+
+            addMessage(text, 'user');
+            userInput.value = '';
+
+            userInput.disabled = true;
+            sendBtn.disabled = true;
+            sendBtn.innerHTML = '...';
+
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        content: text,
+                        mode: currentMode
+                    }),
+                });
+
+                if (!response.ok) throw new Error('Network error');
+
+                const data = await response.json();
+
+                // Format response: Newlines to <br> for simple HTML rendering
+                // Note: For production, consider using a markdown parser (e.g., marked.js)
+                const formattedResponse = data.response.replace(/\n/g, '<br>');
+                addMessage(formattedResponse, 'bot');
+
+            } catch (error) {
+                console.error(error);
+                addMessage('Sorry, something went wrong.', 'bot');
+            } finally {
+                userInput.disabled = false;
+                sendBtn.disabled = false;
+                sendBtn.innerText = currentMode === 'linkedin' ? 'Draft' : 'Analyze';
+                userInput.focus();
+            }
+        }
+
+        function addMessage(htmlContent, role) {
+            const div = document.createElement('div');
+            div.className = `message ${role}`;
+            div.innerHTML = htmlContent;
+            chatArea.appendChild(div);
+            // Smooth scroll
+            chatArea.scrollTo({ top: chatArea.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+
+</html>
