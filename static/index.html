@@ -105,16 +105,16 @@
             backdrop-filter: blur(10px);
         }
 
-        .brain-card img {
-            width: 140px;
-            height: 140px;
-            object-fit: contain;
+        .brain-card svg {
+            width: 120px;
+            height: 120px;
             margin-bottom: 30px;
             filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
             transition: transform 0.4s ease;
+            color: inherit;
         }
 
-        .brain-card:hover img {
+        .brain-card:hover svg {
             transform: scale(1.1) rotate(5deg);
         }
 
@@ -374,7 +374,12 @@
         <div class="cards-wrapper">
             <!-- Linkedin Card -->
             <div class="brain-card card-linkedin" onclick="selectModel('linkedin')">
-                <img src="/static/linkedin_icon.png" alt="Linkedin Brain Icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                </svg>
                 <div class="card-content">
                     <h2>Linkedin Brain</h2>
                     <p>Draft viral, engaging posts optimized for professional growth and engagement.</p>
@@ -383,7 +388,11 @@
 
             <!-- Research Card -->
             <div class="brain-card card-research" onclick="selectModel('research')">
-                <img src="/static/research_icon.png" alt="Research Brain Icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                </svg>
                 <div class="card-content">
                     <h2>Research Brain</h2>
                     <p>Deep dive into complex topics with comprehensive analysis and fact-based answers.</p>
