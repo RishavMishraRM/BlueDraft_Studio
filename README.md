@@ -2,7 +2,7 @@
 
 **BlueDraft Studio** is an advanced AI-powered content generation dashboard featuring a **Dual-Brain Architecture**. It allows users to switch seamlessly between a **Linkedin Drafting Brain** for creating viral professional content and a **Research Brain** for deep, fact-based analysis.
 
-![BlueDraft Studio UI](https://via.placeholder.com/800x400.png?text=BlueDraft+Studio+Dashboard)
+![BlueDraft Studio UI](https://blue-draft-studio.vercel.app/)
 
 ## ✨ Features
 
@@ -20,7 +20,7 @@
 The project is deployment-ready for **Vercel** and **Render**.
 
 ### Live Demo (Vercel)
-[Click here to view the live demo](#) *(Add your Vercel URL here)*
+[Click here to view the live demo](https://blue-draft-studio.vercel.app/)
 
 ## 📂 Project Structure
 
