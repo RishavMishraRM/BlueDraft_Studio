@@ -26,6 +26,15 @@
             --header-bg: rgba(26, 13, 171, 0.1);
         }
 
+        /* Reviewer Theme Override */
+        [data-theme="reviewer"] {
+            --bg-gradient: radial-gradient(circle at 50% 50%, #063026 0%, #000 100%);
+            --accent-gradient: linear-gradient(135deg, #2ea043 0%, #3fb950 100%);
+            --accent-color: #3fb950;
+            --border-color: rgba(63, 185, 80, 0.3);
+            --header-bg: rgba(13, 36, 19, 0.4);
+        }
+
         body {
             margin: 0;
             font-family: 'Outfit', sans-serif;
@@ -163,6 +172,20 @@
 
         .card-research h2 {
             color: #d2a8ff;
+        }
+
+        /* Reviewer Card Styles */
+        .card-reviewer {
+            background: linear-gradient(180deg, rgba(46, 160, 67, 0.05) 0%, rgba(22, 27, 34, 0.8) 100%);
+        }
+
+        .card-reviewer:hover {
+            box-shadow: 0 0 30px rgba(46, 160, 67, 0.2);
+            border-color: #3fb950;
+        }
+
+        .card-reviewer h2 {
+            color: #3fb950;
         }
 
 
@@ -363,6 +386,108 @@
             transform: none;
         }
 
+        /* Reviewer Setup Form Styles */
+        .reviewer-setup {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            gap: 24px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .reviewer-setup.hidden {
+            display: none;
+        }
+
+        .file-upload-group {
+            width: 100%;
+            text-align: left;
+        }
+
+        .file-upload-group label {
+            display: block;
+            color: #8b949e;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .file-upload-input {
+            width: 100%;
+            background: rgba(1, 4, 9, 0.4);
+            border: 1px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            color: #f0f6fc;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-sizing: border-box;
+            /* Fix padding issues */
+        }
+
+        .file-upload-input:hover {
+            border-color: var(--accent-color);
+            background: rgba(1, 4, 9, 0.6);
+        }
+
+        .or-wrapper {
+            position: relative;
+            width: 100%;
+            height: 20px;
+            margin: 10px 0;
+        }
+
+        .or-divider {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .or-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--card-bg);
+            /* Match container bg */
+            padding: 0 10px;
+            color: #8b949e;
+            font-size: 0.8rem;
+        }
+
+        .start-review-btn {
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        .start-review-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .start-review-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         /* --- Mobile Responsive Styles --- */
         @media (max-width: 768px) {
             .landing-container {
@@ -457,6 +582,22 @@
                 </div>
             </div>
 
+            <!-- Reviewer Card -->
+            <div class="brain-card card-reviewer" onclick="selectModel('reviewer')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                <div class="card-content">
+                    <h2>Profile Reviewer</h2>
+                    <p>Upload your CV and LinkedIn profile for a comprehensive score and optimization plan.</p>
+                </div>
+            </div>
+
             <!-- Research Card -->
             <div class="brain-card card-research" onclick="selectModel('research')">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -487,11 +628,42 @@
             <div style="width: 80px;"></div> <!-- Spacer for center alignment -->
         </header>
 
+        <!-- Reviewer Setup Screen -->
+        <div class="reviewer-setup hidden" id="reviewerSetup">
+            <h2 style="font-size: 2rem; margin-bottom: 10px;">Setup Your Review</h2>
+            <p style="color: #8b949e; margin-bottom: 30px;">Upload your CV and current LinkedIn Profile to get started.
+            </p>
+
+            <div class="file-upload-group">
+                <label>Original Resume/CV (PDF)</label>
+                <input type="file" id="cvFile" accept=".pdf" class="file-upload-input">
+            </div>
+
+            <div class="file-upload-group">
+                <label>LinkedIn Profile (PDF)</label>
+                <input type="file" id="linkedinFile" accept=".pdf" class="file-upload-input">
+            </div>
+
+            <div class="or-wrapper">
+                <div class="or-divider"></div>
+                <div class="or-text">OR</div>
+            </div>
+
+            <div class="file-upload-group">
+                <label>LinkedIn URL</label>
+                <input type="text" id="linkedinUrl" placeholder="https://www.linkedin.com/in/..."
+                    class="file-upload-input" style="cursor: text;">
+            </div>
+
+            <button class="start-review-btn" onclick="startReview()" id="startReviewBtn">Start Analysis</button>
+        </div>
+
+
         <div class="chat-area" id="chatArea">
             <!-- Messages go here -->
         </div>
 
-        <div class="input-area">
+        <div class="input-area" id="inputArea">
             <textarea id="userInput" placeholder="Type here..." rows="1"
                 onkeydown="if(event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); sendMessage(); }"></textarea>
             <button class="send-btn" onclick="sendMessage()" id="sendBtn">Send</button>
@@ -500,37 +672,64 @@
 
     <script>
         let currentMode = 'linkedin';
+        // Context memory for Reviewer mode
+        let reviewerContext = "";
+
         const landingView = document.getElementById('landingView');
         const chatView = document.getElementById('chatView');
         const chatArea = document.getElementById('chatArea');
+        const inputArea = document.getElementById('inputArea');
+        const reviewerSetup = document.getElementById('reviewerSetup');
+
         const userInput = document.getElementById('userInput');
         const sendBtn = document.getElementById('sendBtn');
         const chatTitle = document.getElementById('chatTitle');
 
         function selectModel(mode) {
             currentMode = mode;
+            reviewerContext = ""; // Reset context
 
             // Apply Theme
             document.body.setAttribute('data-theme', mode);
 
-            // Update UI Text
+            // Update UI Text & Visibility
+
+            // Default: Show chat, Hide setup
+            chatArea.style.display = 'flex';
+            inputArea.style.display = 'flex';
+            reviewerSetup.classList.add('hidden');
+
             if (mode === 'linkedin') {
                 chatTitle.innerText = "Linkedin Drafting Brain";
                 sendBtn.innerText = "Draft";
                 userInput.placeholder = "What topic should I write a post about?";
                 resetChat("Hey! 👋<br>I'm your <b>Linkedin Drafting Brain</b>.<br>Ready to create some viral content?");
-            } else {
+            } else if (mode === 'research') {
                 chatTitle.innerText = "Research Brain";
                 sendBtn.innerText = "Analyze";
                 userInput.placeholder = "Enter a topic for deep research...";
                 resetChat("Greetings 🧠.<br>I am the <b>Research Brain</b>.<br>I am ready to analyze complex topics for you.");
+            } else if (mode === 'reviewer') {
+                chatTitle.innerText = "Profile Reviewer";
+                sendBtn.innerText = "Ask";
+                userInput.placeholder = "Ask follow-up questions about your review...";
+
+                // Show Setup, Hide Chat initially
+                chatArea.style.display = 'none';
+                inputArea.style.display = 'none';
+                reviewerSetup.classList.remove('hidden');
+
+                // Clear previous file inputs
+                document.getElementById('cvFile').value = '';
+                document.getElementById('linkedinFile').value = '';
+                document.getElementById('linkedinUrl').value = '';
             }
 
             // Transition
             landingView.classList.add('hidden');
             setTimeout(() => {
                 chatView.classList.add('active');
-                userInput.focus();
+                if (mode !== 'reviewer') userInput.focus();
             }, 300);
         }
 
@@ -538,7 +737,6 @@
             chatView.classList.remove('active');
             setTimeout(() => {
                 landingView.classList.remove('hidden');
-                // Reset Body BG (Optional, or keep last theme)
                 document.body.removeAttribute('data-theme');
             }, 300);
         }
@@ -546,6 +744,63 @@
         function resetChat(greeting) {
             chatArea.innerHTML = '';
             addMessage(greeting, 'bot');
+        }
+
+        async function startReview() {
+            const cvFile = document.getElementById('cvFile').files[0];
+            const linkedinFile = document.getElementById('linkedinFile').files[0];
+            const linkedinUrl = document.getElementById('linkedinUrl').value;
+            const startBtn = document.getElementById('startReviewBtn');
+
+            if (!cvFile) {
+                alert("Please upload your CV.");
+                return;
+            }
+            if (!linkedinFile && !linkedinUrl) {
+                alert("Please upload your LinkedIn Profile PDF or provide a URL.");
+                return;
+            }
+
+            startBtn.disabled = true;
+            startBtn.innerText = "Analyzing... (This may take a moment)";
+
+            const formData = new FormData();
+            formData.append('cv', cvFile);
+            if (linkedinFile) formData.append('linkedin_profile', linkedinFile);
+            if (linkedinUrl) formData.append('linkedin_url', linkedinUrl);
+
+            try {
+                const response = await fetch('/review', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) throw new Error('Analysis failed');
+                const data = await response.json();
+
+                // Store content for context if we want to hack it, 
+                // but actually the raw response is the review.
+                // We'll set reviewerContext to the raw response to help with follow-up? 
+                // Or just the CV info if we had it.
+                // For now, let's just make sure the user sees the result.
+
+                // Transition to Chat View
+                reviewerSetup.classList.add('hidden');
+                chatArea.style.display = 'flex';
+                inputArea.style.display = 'flex';
+
+                resetChat("<b>Review Complete!</b><br><br>" + data.response.replace(/\n/g, '<br>'));
+
+                // Store context for follow-up turns
+                reviewerContext = `(Earlier System Context: User has completed a review. The previous output was: ${data.response})`;
+
+            } catch (error) {
+                console.error(error);
+                alert("Something went wrong during analysis.");
+            } finally {
+                startBtn.disabled = false;
+                startBtn.innerText = "Start Analysis";
+            }
         }
 
         async function sendMessage() {
@@ -560,11 +815,17 @@
             sendBtn.innerHTML = '...';
 
             try {
+                let payloadContent = text;
+                // If in reviewer mode and we have context, prepend it invisibly
+                if (currentMode === 'reviewer' && reviewerContext) {
+                    payloadContent = `Context from previous review:\n${reviewerContext}\n\nUser Question: ${text}`;
+                }
+
                 const response = await fetch('/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        content: text,
+                        content: payloadContent,
                         mode: currentMode
                     }),
                 });
@@ -572,11 +833,13 @@
                 if (!response.ok) throw new Error('Network error');
 
                 const data = await response.json();
-
-                // Format response: Newlines to <br> for simple HTML rendering
-                // Note: For production, consider using a markdown parser (e.g., marked.js)
                 const formattedResponse = data.response.replace(/\n/g, '<br>');
                 addMessage(formattedResponse, 'bot');
+
+                // Update context with latest turn to keep conversation somewhat alive
+                if (currentMode === 'reviewer') {
+                    reviewerContext += `\nUser: ${text}\nAssistant: ${data.response}`;
+                }
 
             } catch (error) {
                 console.error(error);
@@ -584,7 +847,7 @@
             } finally {
                 userInput.disabled = false;
                 sendBtn.disabled = false;
-                sendBtn.innerText = currentMode === 'linkedin' ? 'Draft' : 'Analyze';
+                sendBtn.innerText = currentMode === 'linkedin' ? 'Draft' : (currentMode === 'reviewer' ? 'Ask' : 'Analyze');
                 userInput.focus();
             }
         }
