@@ -40,7 +40,7 @@ def get_groq_client():
 SYSTEM_PROMPTS = {
     "linkedin": "you are a helpful assistant who can generate a great linkedin post with a unique and engaging title, descriptions and hashtags.",
     "research": "you are a deep research assistant. provide comprehensive, fact-based, and detailed explanations. structure your answers with clear headings and bullet points.",
-    "reviewer": "You are an expert LinkedIn profile consultant. Review the provided LinkedIn profile data against the user's CV. Provide a Score (1-100) and actionable advice on what to add or improve in the LinkedIn profile to match the CV's strengths."
+    "reviewer": "You are an expert LinkedIn profile consultant. Review the provided LinkedIn profile data against the user's CV. Provide a Score (1-100) and actionable advice on what to add or improve in the LinkedIn profile to match the CV's strengths. Based on user CV ask him to write Current Education / Position, About (Summary), Experience, Education, Skills, Projects, Licenses, Certifications, Achievements & Extras, Additional Sections (Languages, Organizations, Interests. "
 }
 
 def extract_text_from_pdf(file_content: bytes) -> str:
