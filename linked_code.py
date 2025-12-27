@@ -5,50 +5,12 @@ from pydantic import BaseModel
 import os
 from groq import Groq
 from dotenv import load_dotenv
-from pypdf import PdfReader
-from io import BytesIO
-
-from pathlib import Path
-
-load_dotenv()
-
-app = FastAPI()
-
-# Get absolute path for Vercel compatibility
-BASE_DIR = Path(__file__).resolve().parent
-
-app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
-
-@app.get("/")
-async def read_root():
-    return FileResponse(BASE_DIR / 'static/index.html')
-
-class UserRequest(BaseModel):
-    content: str
-    mode: str = "linkedin"  # Default to linkedin
-
-client = None
-
-def get_groq_client():
-    global client
-    api_key = os.environ.get("GROQ_API_KEY")
-    if not api_key:
-        print("Warning: GROQ_API_KEY not found in environment variables.")
-        # We can't proceed without an API key for actual calls, but we avoid crashing startup.
-        # Returning None here will handle the error gracefully in the endpoint.
-        return None
-        
-    if client is None:
-        client = Groq(api_key=api_key)
-    return client
-
-SYSTEM_PROMPTS = {
-    "linkedin": "you are a helpful assistant who can generate a great linkedin post with a unique and engaging title, descriptions and hashtags.",
-    "research": "you are a deep research assistant. provide comprehensive, fact-based, and detailed explanations. structure your answers with clear headings and bullet points.",
-    "reviewer": "You are an expert LinkedIn profile consultant. Review the provided LinkedIn profile data against the user's CV. Provide a Score (1-100) and actionable advice on what to add or improve in the LinkedIn profile to match the CV's strengths."
-}
+# from pypdf import PdfReader (Moved to local scope)
+# from io import BytesIO (Moved to local scope)
 
 def extract_text_from_pdf(file_content: bytes) -> str:
+    from pypdf import PdfReader
+    from io import BytesIO
     try:
         reader = PdfReader(BytesIO(file_content))
         text = ""
