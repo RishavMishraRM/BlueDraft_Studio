@@ -27,9 +27,20 @@ class UserRequest(BaseModel):
     content: str
     mode: str = "linkedin"  # Default to linkedin
 
-client = Groq(
-    api_key=os.environ.get("GROQ_API_KEY"),
-)
+client = None
+
+def get_groq_client():
+    global client
+    api_key = os.environ.get("GROQ_API_KEY")
+    if not api_key:
+        print("Warning: GROQ_API_KEY not found in environment variables.")
+        # We can't proceed without an API key for actual calls, but we avoid crashing startup.
+        # Returning None here will handle the error gracefully in the endpoint.
+        return None
+        
+    if client is None:
+        client = Groq(api_key=api_key)
+    return client
 
 SYSTEM_PROMPTS = {
     "linkedin": "you are a helpful assistant who can generate a great linkedin post with a unique and engaging title, descriptions and hashtags.",
@@ -54,6 +65,10 @@ async def review_profile(
     linkedin_url: str = Form(None)
 ):
     try:
+        client = get_groq_client()
+        if not client:
+             raise HTTPException(status_code=500, detail="Server Configuration Error: GROQ_API_KEY is missing.")
+
         # Extract CV Text
         cv_contents = await cv.read()
         cv_text = extract_text_from_pdf(cv_contents)
@@ -90,6 +105,10 @@ async def review_profile(
 @app.post("/chat")
 async def chat(request: UserRequest):
     try:
+        client = get_groq_client()
+        if not client:
+             raise HTTPException(status_code=500, detail="Server Configuration Error: GROQ_API_KEY is missing.")
+
         system_instruction = SYSTEM_PROMPTS.get(request.mode, SYSTEM_PROMPTS["linkedin"])
         
         # Combine user content with the specific system instruction
