@@ -1,19 +1,20 @@
 # 🧠 BlueDraft Studio
 
-**BlueDraft Studio** is an advanced AI-powered content generation dashboard featuring a **Dual-Brain Architecture**. It allows users to switch seamlessly between a **Linkedin Drafting Brain** for creating viral professional content and a **Research Brain** for deep, fact-based analysis.
+**BlueDraft Studio** is an advanced AI-powered content generation dashboard featuring a **Triple-Brain Architecture**. It allows users to switch seamlessly between a **Linkedin Drafting Brain**, a **Research Brain**, and a new **Profile Reviewer** for comprehensive career optimization.
 
 ![BlueDraft Studio UI](https://blue-draft-studio.vercel.app/)
 
 ## ✨ Features
 
-- **Dual-Mode AI Engine**:
+- **Triple-Mode AI Engine**:
   - **Linkedin Brain 👔**: Specialized in crafting engaging, high-conversion Linkedin posts with optimal formatting and hashtags.
   - **Research Brain 🔬**: Specialized in deep-dive analysis, structured explanations, and comprehensive answers.
+  - **Profile Reviewer 📋**: Analyzes your Resume (CV) and LinkedIn Profile (PDF or URL) to provide a score (1-100) and actionable improvement advice.
 - **Premium UI/UX**:
   - Dark-mode first design with glassmorphism effects.
   - Smooth transitions and animations.
-  - Dynamic theming (Blue/Teal for Linkedin, Deep Purple for Research).
-- **Modern Tech Stack**: Built with FastAPI, Vanilla JS/CSS, and Groq's Llama 3 70B model.
+  - Dynamic theming (Blue for Linkedin, Purple for Research, Green for Reviewer).
+- **Modern Tech Stack**: Built with FastAPI, Vanilla JS/CSS, and Groq's Llama 3 70B model. Support for PDF processing via `pypdf`.
 
 ## 🚀 Deployment
 
@@ -63,6 +64,7 @@ BlueDraft_Studio/
     ```bash
     pip install -r requirements.txt
     ```
+    *Note: This project requires `pypdf` and `python-multipart` for file handling.*
 
 3.  **Configure Environment**:
     Create a `.env` file in the root directory and add your key:
@@ -82,7 +84,7 @@ BlueDraft_Studio/
 
 ## 🔧 Configuration Details
 
-- **Backend**: `linked_code.py` initializes the FastAPI app. It defines a system prompt dictionary `SYSTEM_PROMPTS` that switches instruction sets based on the user's selected `mode`.
+- **Backend**: `linked_code.py` initializes the FastAPI app using `pyproject.toml` dependencies. It defines a system prompt dictionary `SYSTEM_PROMPTS` that switches instruction sets based on the user's selected `mode`.
 - **Frontend**: `static/index.html` handles the UI logic. It stores the `currentMode` state variable and dynamically swaps CSS variables (colors/gradients) and text content when the user selects a card.
 
 ## 🤝 Contributing
