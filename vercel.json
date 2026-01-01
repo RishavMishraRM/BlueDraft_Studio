@@ -1,21 +1,16 @@
 {
-    "_comment_builds": "Configuration for Vercel backend build processes",
     "builds": [
         {
-            "_comment_src": "Main Python entry point for the FastAPI server",
             "src": "main.py",
             "use": "@vercel/python"
         }
     ],
-    "_comment_routes": "URL routing rules for frontend and backend mapping",
     "routes": [
         {
-            "_comment_static": "Ensures all requests to /static/ are served from the static folder",
             "src": "/static/(.*)",
             "dest": "/static/$1"
         },
         {
-            "_comment_fallback": "Catch-all route that directs all other traffic to the Python app",
             "src": "/(.*)",
             "dest": "/main.py"
         }
