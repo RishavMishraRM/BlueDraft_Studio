@@ -1,7 +1,7 @@
-fastapi
-uvicorn
-python-dotenv
-groq
-pypdf
-python-multipart
-pydantic
+fastapi # Modern web framework for the backend server
+uvicorn # ASGI server to host the FastAPI application
+python-dotenv # Utility to load environment variables from a .env file
+groq # AI client for API interaction with LLMs
+pypdf # Library to extract text from PDF documents
+python-multipart # Plugin to enable file and form data parsing
+pydantic # Data validation and settings management using Python type hints

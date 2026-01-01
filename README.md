@@ -1,96 +1,96 @@
-# 🧠 BlueDraft Studio
+# 🚀 BlueDraft Studio: The Professional Content Suite
 
-**BlueDraft Studio** is an advanced AI-powered content generation dashboard featuring a **Triple-Brain Architecture**. It allows users to switch seamlessly between a **Linkedin Drafting Brain**, a **Research Brain**, and a new **Profile Reviewer** for comprehensive career optimization.
+BlueDraft Studio is a premium, AI-powered platform designed to optimize your professional presence across specialized workflows. Featuring a unique **"Quad-Brain" architecture**, it provides tailored intelligence for LinkedIn drafting, deep research, profile auditing, and content refinement.
 
-![BlueDraft Studio UI](https://blue-draft-studio.vercel.app/)
-
-## ✨ Features
-
-- **Triple-Mode AI Engine**:
-  - **Linkedin Brain 👔**: Specialized in crafting engaging, high-conversion Linkedin posts with optimal formatting and hashtags.
-  - **Research Brain 🔬**: Specialized in deep-dive analysis, structured explanations, and comprehensive answers.
-  - **Profile Reviewer 📋**: Analyzes your Resume (CV) and LinkedIn Profile (PDF or URL) to provide a score (1-100) and actionable improvement advice.
-- **Premium UI/UX**:
-  - Dark-mode first design with glassmorphism effects.
-  - Smooth transitions and animations.
-  - Dynamic theming (Blue for Linkedin, Purple for Research, Green for Reviewer).
-- **Modern Tech Stack**: Built with FastAPI, Vanilla JS/CSS, and Groq's Llama 3 70B model. Support for PDF processing via `pypdf`.
-
-## 🚀 Deployment
-
-The project is deployment-ready for **Vercel** and **Render**.
-
-### Live Demo (Vercel)
-[Click here to view the live demo](https://blue-draft-studio.vercel.app/)
+---
 
 ## 📂 Project Structure
 
-Here is an overview of the key files and directories:
-
-```graphql
+```text
 BlueDraft_Studio/
-├── static/                # Frontend Assets
-│   └── index.html         # Main Single Page Application (SPA) containing HTML, CSS, and JS.
-├── linked_code.py         # Main Backend Application (FastAPI). Handles API requests and Groq integration.
-├── pyproject.toml         # Python project configuration and dependencies.
-├── requirements.txt       # Frozen dependencies for deployment (generated from uv).
-├── vercel.json            # Configuration file for Vercel deployment.
-├── Procfile               # Configuration file for Render/Heroku deployment.
-├── .env                   # Environment variables (API Keys). *Not committed to Git*.
-└── README.md              # Project documentation.
+├── static/
+│   └── index.html       # Premium Glassmorphism Frontend (Unified UI)
+├── main.py              # FastAPI Backend (AI Logic & Routing)
+├── vercel.json          # Deployment configuration for Vercel
+├── Procfile             # Deployment configuration for Render/Heroku
+├── pyproject.toml       # Python project metadata and dependencies
+├── requirements.txt     # Standard dependency list
+├── uv.lock              # UV lockfile for deterministic builds
+├── .python-version      # Target Python version (3.12)
+├── .env                 # Environment variables (API Keys)
+└── README.md            # Comprehensive project documentation
 ```
 
-## 🛠️ Local Installation
+---
 
-### Prerequisites
-- Python 3.12+
-- [uv](https://github.com/astral-sh/uv) (Recommended) or pip
-- A [Groq API Key](https://console.groq.com/)
+## 🧠 The Quad-Brain Architecture
 
-### Setup
+The platform is structured around four specialized AI modules, each with its own "Brain" and dedicated system prompts:
 
-1.  **Clone the repository**:
-    ```bash
-    git clone https://github.com/YOUR_USERNAME/bluedraft-studio.git
-    cd BlueDraft_Studio
-    ```
+1.  **Drafting Brain**: Engineered to create viral, high-engagement LinkedIn content using proven psychological triggers.
+2.  **Research Brain**: A technical specialist optimized for deep-dives, fact-checking, and structured technical analysis.
+3.  **Profile Reviewer**: A sophisticated auditor that parses your CV PDF and compares it against your LinkedIn profile/URL to provide a numerical score and GAP analysis. 
+4.  **Post Improver**: A creative suite with three sub-strategies:
+    *   **🔥 Hook Only**: Generates high-impact "scroll-stoppers".
+    *   **✍️ Clarity & Flow**: Refines drafts for professional readability.
+    *   **📈 Engagement**: Optimizes structure and CTAs for social growth.
 
-2.  **Install Dependencies**:
-    Using uv (fastest):
-    ```bash
-    uv sync
-    ```
-    Or using pip:
-    ```bash
-    pip install -r requirements.txt
-    ```
-    *Note: This project requires `pypdf` and `python-multipart` for file handling.*
+---
 
-3.  **Configure Environment**:
-    Create a `.env` file in the root directory and add your key:
-    ```env
-    GROQ_API_KEY=gsk_your_actual_key_here
-    ```
+## 🛠️ Tech Stack & Architecture
 
-4.  **Run the Server**:
-    ```bash
-    uv run python linked_code.py
-    # OR
-    uvicorn linked_code:app --reload
-    ```
+*   **Backend**: [FastAPI](https://fastapi.tiangolo.com/) (Python 3.12) — High-performance asynchronous web framework.
+*   **AI Engine**: [Groq](https://groq.com/) — Leveraging `llama-3.3-70b-versatile` for ultra-fast, intelligent inference.
+*   **Frontend**: Vanilla HTML5/CSS3/JS — Optimized for zero-dependency speed and premium glassmorphism aesthetics.
+*   **PDF Parsing**: [PyPDF](https://pypdf.readthedocs.io/) — Used for extracting text from resumes and profiles.
+*   **Deployment**: Ready for [Vercel](https://vercel.com/) and [Render](https://render.com/).
 
-5.  **Open in Browser**:
-    Navigate to `http://localhost:8000`.
+---
 
-## 🔧 Configuration Details
+## 🚀 Live Launch & Deployment
 
-- **Backend**: `linked_code.py` initializes the FastAPI app using `pyproject.toml` dependencies. It defines a system prompt dictionary `SYSTEM_PROMPTS` that switches instruction sets based on the user's selected `mode`.
-- **Frontend**: `static/index.html` handles the UI logic. It stores the `currentMode` state variable and dynamically swaps CSS variables (colors/gradients) and text content when the user selects a card.
+### 1. Local Development
+1. **Clone the repository**:
+   ```bash
+   git clone <repo-url>
+   cd BlueDraft_Studio
+   ```
+2. **Install dependencies** (Recommended: using `uv`):
+   ```bash
+   uv sync
+   ```
+3. **Configure Environment**:
+   Create a `.env` file in the root directory and add your key:
+   ```env
+   GROQ_API_KEY=your_api_key_here
+   ```
+4. **Launch the server**:
+   ```bash
+   uv run python main.py
+   ```
+   *The app will be available at `http://localhost:8000`.*
 
-## 🤝 Contributing
+### 2. Vercel Deployment
+The project includes a `vercel.json` configuration for seamless one-click deployments.
+- Connect your GitHub repo to Vercel.
+- Add `GROQ_API_KEY` to Vercel's **Environment Variables**.
+- Vercel will automatically detect the Python configuration.
 
-Contributions are welcome! Please fork the repository and submit a pull request.
+---
 
-## 📄 License
+## 📱 Professional UI/UX Philosophy
+Designed with a "Cinematic" philosophy, BlueDraft Studio provides:
+*   **Glassmorphism Architecture**: Real-time backdrop blurs, noise textures, and mesh gradients.
+*   **Dynamic Theming**: The interface visually adapts its color palette (Deep Blue, Purple, Green, Orange) based on the selected AI Brain.
+*   **Interactive Terminal**: A high-end "Neural Glass Terminal" mockup on the landing page showcases simulated AI agent workflows.
+*   **Mobile-First Design**: Optimized touch targets and list-view cards for a premium mobile experience.
 
-MIT License.
+---
+
+## 🔒 Security & Privacy
+- **Stateless Analysis**: Uploaded PDFs are processed in memory and never stored on the server.
+- **Environment Safety**: API keys are handled strictly through server-side environment variables.
+
+---
+
+*Developed with precision for the next generation of professional workflows.*

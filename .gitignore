@@ -1,4 +1,4 @@
-# Python-generated files
+# Python-generated files <!-- Section for temporary Python build artifacts -->
 __pycache__/
 *.py[oc]
 build/
@@ -6,8 +6,8 @@ dist/
 wheels/
 *.egg-info
 
-# Virtual environments
+# Virtual environments <!-- Section for local dependency isolation -->
 .venv
 
-# Environment variables
+# Environment variables <!-- Section for sensitive credentials -->
 .env

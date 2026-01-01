@@ -1,1 +1,2 @@
-3.12
+3.12 # Specifies the exact Python version to be used by uv and other version managers
+

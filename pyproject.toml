@@ -1,14 +1,15 @@
-[project]
-name = "bluedraft-studio"
-version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
-requires-python = ">=3.12"
-dependencies = [
-    "fastapi>=0.127.0",
-    "groq>=1.0.0",
-    "python-dotenv>=1.2.1",
-    "uvicorn>=0.40.0",
-    "pypdf>=3.0.0",
-    "python-multipart>=0.0.6",
-]
+[project] # Start of the project metadata section
+name = "bluedraft-studio" # The unique name of the application package
+version = "0.1.0" # Current semantic versioning string for the project
+description = "Add your description here" # Short summary of the project purpose
+readme = "README.md" # Relative path to the primary documentation file
+requires-python = ">=3.12" # Specifies the minimum required Python interpreter version
+dependencies = [ # List of external libraries required for execution
+    "fastapi>=0.127.0", # Modern web framework for building APIs
+    "groq>=1.0.0", # AI client for performing model inference
+    "python-dotenv>=1.2.1", # Utility for loading secret keys from .env
+    "uvicorn>=0.40.0", # High-performance ASGI server for hosting
+    "pypdf>=3.0.0", # Library for extracting text data from PDF files
+    "python-multipart>=0.0.6", # Required for handling file uploads/forms in FastAPI
+] # End of dependency list
+
