@@ -1421,7 +1421,7 @@
             width: 85%;
             max-width: 800px;
             margin: 0 auto;
-            padding: 24px 0 40px 0;
+            padding: 24px 0;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -1447,24 +1447,27 @@
         }
 
         .input-wrapper {
-            align-items: flex-end;
-            /* Keep button at the bottom as textarea grows */
+            align-items: center;
+            /* Center items vertically */
+            min-height: 56px;
         }
+
 
         textarea {
             flex: 1;
             background: transparent;
             border: none;
-            padding: 14px 20px;
+            padding: 12px 16px;
             color: #fff;
-            font-size: 1.05rem;
+            font-size: 1rem;
             resize: none;
-            min-height: 50px;
-            /* Adaptive minimum height */
-            height: 50px;
+            height: 44px;
+            min-height: 44px;
             max-height: 200px;
             outline: none;
-            transition: height 0.1s;
+            line-height: 1.4;
+            display: flex;
+            align-items: center;
         }
 
         /* Improver Options Radio-like UI */
@@ -1544,18 +1547,22 @@
             /* Contrast text label for action */
             border: none;
             /* Disables browser default button borders */
-            border-radius: 16px;
+            border-radius: 12px;
             /* Rounded corners matching input bar corners */
-            padding: 0 36px;
+            padding: 0 24px;
             /* Horizontal width from label padding */
+            height: 40px;
+            /* Explicit height to prevent stretching */
             font-weight: 600;
             /* Bolder text weight for prominence */
             cursor: pointer;
             /* Interaction pointer hand appearance */
-            transition: transform 0.2s;
+            transition: all 0.2s;
             /* Speed for button movement on action */
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             /* Subtle button drop shadow depth */
+            flex-shrink: 0;
+            align-self: center;
         }
 
         button.send-btn:hover {
@@ -2686,7 +2693,7 @@
 
             // Reset input state for fresh session
             userInput.value = '';
-            userInput.style.height = '50px';
+            userInput.style.height = '44px';
 
             // Initial Default: Show interaction area, Hide setup form UI
             chatArea.style.display = 'flex'; // Reveals conversation history bubble area
@@ -2826,7 +2833,7 @@
 
             addMessage(text, 'user'); // Renders human message with avatar
             userInput.value = ''; // Clears input box
-            userInput.style.height = '50px'; // Reset height after clearing
+            userInput.style.height = '44px'; // Reset height after clearing
             userInput.disabled = true; // Locks input
             sendBtn.disabled = true; // Locks button
 
