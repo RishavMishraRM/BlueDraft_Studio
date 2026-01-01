@@ -1446,6 +1446,11 @@
             transform: translateY(-2px);
         }
 
+        .input-wrapper {
+            align-items: flex-end;
+            /* Keep button at the bottom as textarea grows */
+        }
+
         textarea {
             flex: 1;
             background: transparent;
@@ -1454,8 +1459,9 @@
             color: #fff;
             font-size: 1.05rem;
             resize: none;
+            min-height: 50px;
+            /* Adaptive minimum height */
             height: 50px;
-            /* Fixed starting height */
             max-height: 200px;
             outline: none;
             transition: height 0.1s;
@@ -2678,7 +2684,9 @@
             // Apply Theme styling logic
             document.body.setAttribute('data-theme', mode); // Updates CSS variables to match selection theme
 
-            // Update UI Interface elements Text & Visibility logic
+            // Reset input state for fresh session
+            userInput.value = '';
+            userInput.style.height = '50px';
 
             // Initial Default: Show interaction area, Hide setup form UI
             chatArea.style.display = 'flex'; // Reveals conversation history bubble area
@@ -2818,6 +2826,7 @@
 
             addMessage(text, 'user'); // Renders human message with avatar
             userInput.value = ''; // Clears input box
+            userInput.style.height = '50px'; // Reset height after clearing
             userInput.disabled = true; // Locks input
             sendBtn.disabled = true; // Locks button
 
@@ -2859,7 +2868,13 @@
             } finally {
                 userInput.disabled = false;
                 sendBtn.disabled = false;
-                sendBtn.innerText = currentMode === 'linkedin' ? 'Draft' : (currentMode === 'reviewer' ? 'Ask' : 'Analyze');
+
+                // Restore correct button text based on mode
+                if (currentMode === 'linkedin') sendBtn.innerText = 'Draft';
+                else if (currentMode === 'reviewer') sendBtn.innerText = 'Ask';
+                else if (currentMode === 'improver') sendBtn.innerText = 'Improve';
+                else sendBtn.innerText = 'Analyze';
+
                 userInput.focus();
             }
         }
@@ -2943,7 +2958,7 @@
         // --- Auto-Grow Textarea Logic ---
         userInput.addEventListener('input', function () {
             // Adjusts typing area height based on content volume
-            this.style.height = '50px'; // Reset to base height to calculate scrollHeight
+            this.style.height = 'auto'; // Reset to auto to get correct scrollHeight
             this.style.height = (this.scrollHeight) + 'px'; // Expand to fit new text stream
         });
 
