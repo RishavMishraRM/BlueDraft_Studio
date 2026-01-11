@@ -11,5 +11,7 @@ dependencies = [ # List of external libraries required for execution
     "uvicorn>=0.40.0", # High-performance ASGI server for hosting
     "pypdf>=3.0.0", # Library for extracting text data from PDF files
     "python-multipart>=0.0.6", # Required for handling file uploads/forms in FastAPI
+    "requests>=2.32.0", # For fetching URL content
+    "beautifulsoup4>=4.12.0", # For HTML parsing
 ] # End of dependency list
 

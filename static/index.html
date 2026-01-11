@@ -770,27 +770,29 @@
         }
 
         .card-linkedin {
-            grid-column: span 4;
-            height: 480px;
-            /* Taller prominence */
+            grid-column: span 6;
+            height: 380px;
         }
 
         .card-reviewer {
-            grid-column: span 4;
-            height: 480px;
+            grid-column: span 6;
+            height: 380px;
         }
 
         .card-research {
-            grid-column: span 4;
-            height: 480px;
+            grid-column: span 6;
+            height: 380px;
         }
 
         .card-improver {
+            grid-column: span 6;
+            height: 380px;
+        }
+
+        .card-workspace {
             grid-column: span 12;
-            height: 320px;
-            /* Slightly taller for impact */
-            justify-content: center;
-            /* Center content vertically if needed, or flex-start */
+            height: auto;
+            min-height: 180px;
         }
 
         /* Continuous Border Animation */
@@ -2319,26 +2321,57 @@
         </div>
 
         <div class="cards-wrapper"> <!-- Container for horizontal model option cards -->
-            <!-- Linkedin Card --> <!-- Option for professional content drafting -->
-            <div class="brain-card card-linkedin" onclick="selectModel('linkedin')">
-                <!-- Selection card for LinkedIn mode with 3D effects -->
-                <div class="card-inner"> <!-- Internal container for 3D depth items -->
+            <!-- Agent Workspace Card -->
+            <div class="brain-card card-workspace" onclick="selectModel('agent_workspace')" style="margin-top: 0;">
+                <div class="card-inner" style="flex-direction: row; gap: 30px; align-items: center; padding: 40px;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round"> <!-- LinkedIn icon visual representation -->
+                        stroke-linejoin="round" style="width: 60px; height: 60px;">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="9" y1="3" x2="9" y2="21"></line>
+                    </svg>
+                    <div class="card-content" style="text-align: left;">
+                        <h2 style="margin: 0 0 8px 0;">Agent Workspace</h2>
+                        <p style="margin: 0;">Automated high-impact post creation from scratch. Define persona, tone,
+                            and research URLs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Line 2 -->
+            <!-- Linkedin Card -->
+            <div class="brain-card card-linkedin" onclick="selectModel('linkedin')">
+                <div class="card-inner">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round">
                         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                         <rect x="2" y="9" width="4" height="12"></rect>
                         <circle cx="4" cy="4" r="2"></circle>
                     </svg>
                     <div class="card-content">
-                        <h2>LinkedIn Brain</h2> <!-- Name of the LinkedIn specialization -->
+                        <h2>LinkedIn Brain</h2>
                         <p>Draft viral, engaging posts optimized for professional growth.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Reviewer Card --> <!-- Option for CV and profile analysis -->
+            <!-- Research Card -->
+            <div class="brain-card card-research" onclick="selectModel('research')">
+                <div class="card-inner">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                    <div class="card-content">
+                        <h2>Research Brain</h2>
+                        <p>Deep dive into complex topics with fact-based structured answers.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Line 3 -->
+            <!-- Reviewer Card -->
             <div class="brain-card card-reviewer" onclick="selectModel('reviewer')">
-                <!-- Selection card for Profile Reviewer mode -->
                 <div class="card-inner">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -2355,25 +2388,8 @@
                 </div>
             </div>
 
-            <!-- Research Card --> <!-- Option for technical and subject research -->
-            <div class="brain-card card-research" onclick="selectModel('research')">
-                <!-- Selection card for Research mode -->
-                <div class="card-inner">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                    </svg>
-                    <div class="card-content">
-                        <h2>Research Brain</h2>
-                        <p>Deep dive into complex topics with fact-based structured answers.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Improver Card --> <!-- Option for content refining and rewriting -->
+            <!-- Improver Card -->
             <div class="brain-card card-improver" onclick="selectModel('improver')">
-                <!-- Selection card for Post Improver mode -->
                 <div class="card-inner">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -2632,6 +2648,49 @@
                 <!-- Final action button to compute analysis -->
             </div>
 
+            <!-- Agent Workspace Setup Screen -->
+            <div class="reviewer-setup hidden" id="agentSetup">
+                <h2 style="font-size: 2rem; margin-bottom: 10px;">Agent Workspace</h2>
+                <p style="color: #8b949e; margin-bottom: 30px;">Configure your content agent for precision drafting.</p>
+
+                <div class="file-upload-group">
+                    <label>Target Person / Brand Description</label>
+                    <textarea id="workspacePerson"
+                        placeholder="e.g., A Senior AI Engineer sharing technical insights..." class="file-upload-input"
+                        style="cursor: text; min-height: 100px; height: auto;"></textarea>
+                </div>
+
+                <div class="file-upload-group">
+                    <label>Select Tone</label>
+                    <div class="tone-selector" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button class="improver-option active"
+                            style="font-size: 0.8rem; padding: 8px 16px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #8b949e; border-radius: 99rem; cursor: pointer;"
+                            onclick="setWorkspaceTone('Professional', this)">Professional</button>
+                        <button class="improver-option"
+                            style="font-size: 0.8rem; padding: 8px 16px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #8b949e; border-radius: 99rem; cursor: pointer;"
+                            onclick="setWorkspaceTone('Casual', this)">Casual</button>
+                        <button class="improver-option"
+                            style="font-size: 0.8rem; padding: 8px 16px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #8b949e; border-radius: 99rem; cursor: pointer;"
+                            onclick="setWorkspaceTone('Bold', this)">Bold</button>
+                        <button class="improver-option"
+                            style="font-size: 0.8rem; padding: 8px 16px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #8b949e; border-radius: 99rem; cursor: pointer;"
+                            onclick="setWorkspaceTone('Sarcastic', this)">Sarcastic</button>
+                        <button class="improver-option"
+                            style="font-size: 0.8rem; padding: 8px 16px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #8b949e; border-radius: 99rem; cursor: pointer;"
+                            onclick="setWorkspaceTone('Inspirational', this)">Inspirational</button>
+                    </div>
+                </div>
+
+                <div class="file-upload-group">
+                    <label>Research URL (Optional)</label>
+                    <input type="text" id="workspaceUrl" placeholder="https://..." class="file-upload-input"
+                        style="cursor: text;">
+                </div>
+
+                <button class="start-review-btn" onclick="startWorkspaceAnalysis()" id="startWorkspaceBtn">Initialize
+                    Workspace</button>
+            </div>
+
 
             <div class="chat-area" id="chatArea"> <!-- Scrolling message history container -->
                 <!-- Messages go here --> <!-- Dynamic target for JS-injected bubbles -->
@@ -2670,6 +2729,7 @@
     <script> // Starts application logic script block
         let currentMode = 'linkedin'; // Tracks active AI model selection state
         let improverSubMode = 'hook'; // Tracks active sub-mode for the Post Improver (hook, clarity, engagement)
+        let workspaceTone = 'Professional'; // Tracks selected tone for Agent Workspace
         // Context memory for Reviewer mode turns restoration
         let reviewerContext = ""; // Persists analysis results for contextual follow-up chat
 
@@ -2678,6 +2738,7 @@
         const chatArea = document.getElementById('chatArea'); // UI reference for messages history scroll container
         const inputArea = document.getElementById('inputArea'); // UI reference for composed message interactive bar
         const reviewerSetup = document.getElementById('reviewerSetup'); // UI reference for CV analysis setup screen form
+        const agentSetup = document.getElementById('agentSetup'); // UI reference for agent workspace setup screen form
         const improverOptions = document.getElementById('improverOptions'); // UI reference for improvement sub-selectors
 
         const userInput = document.getElementById('userInput'); // UI reference for typing text interaction field
@@ -2699,6 +2760,7 @@
             chatArea.style.display = 'flex'; // Reveals conversation history bubble area
             inputArea.style.display = 'flex'; // Reveals specialized typing bar interface
             reviewerSetup.classList.add('hidden'); // Hides the review analysis setup form
+            agentSetup.classList.add('hidden'); // Hides the agent workspace setup form
             improverOptions.style.display = 'none'; // Hides the refinement sub-options by default
 
             if (mode === 'linkedin') { // Customization logic for Professional Drafting model
@@ -2725,6 +2787,20 @@
                 document.getElementById('cvFile').value = ''; // Clears resume file selection state
                 document.getElementById('linkedinFile').value = ''; // Clears LinkedIn PDF selection state
                 document.getElementById('linkedinUrl').value = ''; // Clears profile link text input state
+            } else if (mode === 'agent_workspace') { // Customization logic for the new Workspace Agent
+                chatTitle.innerText = "Agent Workspace";
+                sendBtn.innerText = "Draft";
+                userInput.placeholder = "Fine-tune your post or ask for variations...";
+
+                chatArea.style.display = 'none';
+                inputArea.style.display = 'none';
+                agentSetup.classList.remove('hidden');
+
+                document.getElementById('workspacePerson').value = '';
+                document.getElementById('workspaceUrl').value = '';
+                workspaceTone = 'Professional';
+                document.querySelectorAll('.tone-selector .improver-option').forEach(opt => opt.classList.remove('active'));
+                document.querySelector('.tone-selector .improver-option').classList.add('active');
             } else if (mode === 'improver') { // Customization logic for Content Improvement model
                 chatTitle.innerText = "Post Improver"; // Updates branding title for Refinement
                 sendBtn.innerText = "Improve"; // Changes button label to refinement style
@@ -2737,7 +2813,7 @@
             landingView.classList.add('hidden'); // Starts fade-out for selection screen
             setTimeout(() => { // Delays execution to sync with CSS fade durations
                 chatView.classList.add('active'); // Starts fade-in for interaction interface
-                if (mode !== 'reviewer') userInput.focus(); // Auto-focuses typing box if no setup form
+                if (mode !== 'reviewer' && mode !== 'agent_workspace') userInput.focus(); // Auto-focuses typing box if no setup form
             }, 300); // 300ms timing window matching transition definitions
         }
 
@@ -2767,8 +2843,23 @@
 
         function setImproverSubMode(mode, element) { // Logic to update the active refinement strategy
             improverSubMode = mode; // Updates the tracking state variable
-            document.querySelectorAll('.improver-option').forEach(opt => opt.classList.remove('active')); // Deselects all pills
+            document.querySelectorAll('#improverOptions .improver-option').forEach(opt => opt.classList.remove('active')); // Deselects all pills
             element.classList.add('active'); // Applies highlight to the selected pill
+        }
+
+        function setWorkspaceTone(tone, element) {
+            workspaceTone = tone;
+            document.querySelectorAll('.tone-selector .improver-option').forEach(opt => opt.classList.remove('active'));
+            element.classList.add('active');
+            // Apply active styles manually since they share a class with improver
+            document.querySelectorAll('.tone-selector .improver-option').forEach(opt => {
+                opt.style.background = 'rgba(255,255,255,0.05)';
+                opt.style.color = '#8b949e';
+                opt.style.borderColor = 'rgba(255,255,255,0.1)';
+            });
+            element.style.background = 'var(--accent-gradient)';
+            element.style.color = 'white';
+            element.style.borderColor = 'transparent';
         }
 
         function resetChat(greeting) { // Utility to wipe history and show greeting
@@ -2827,6 +2918,77 @@
             }
         }
 
+        async function startWorkspaceAnalysis() {
+            const person = document.getElementById('workspacePerson').value.trim();
+            const url = document.getElementById('workspaceUrl').value.trim();
+            const startBtn = document.getElementById('startWorkspaceBtn');
+
+            if (!person) {
+                alert("Please describe the target person or brand.");
+                return;
+            }
+
+            startBtn.disabled = true;
+            startBtn.innerText = "Drafting Content...";
+
+            try {
+                const response = await fetch('/workspace', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ person, tone: workspaceTone, url })
+                });
+
+                if (!response.ok) throw new Error('Generation failed');
+                const data = await response.json();
+
+                agentSetup.classList.add('hidden');
+                chatArea.style.display = 'flex';
+                inputArea.style.display = 'flex';
+
+                // Create the response body with premium styling
+                const responseHtml = `
+                    <div class="ai-response-block" style="margin-top: 20px;">
+                        <div class="ai-content">
+                            <div class="analysis-step"><span class="check-icon">✓</span> Identifying persona architecture...</div>
+                            <div class="analysis-step"><span class="check-icon">✓</span> Analyzing tone parameters (${workspaceTone})...</div>
+                            ${url ? `<div class="analysis-step"><span class="check-icon">✓</span> Extracting context from URL...</div>
+                                     <div style="margin: 10px 0; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); font-size: 0.8rem; color: #8b949e;">
+                                         <b style="color:var(--accent-color); display: block; margin-bottom: 4px;">Knowledge Extracted:</b>
+                                         ${data.scraped_summary}
+                                     </div>` : ''}
+                            
+                            <div style="margin: 24px 0 12px 0; font-size: 1.1rem; font-weight: 600; color: #fff;">
+                                Here is your tailored draft:
+                            </div>
+
+                            <div class="code-snippet" style="background: rgba(var(--accent-rgb), 0.05); border: 1px solid rgba(var(--accent-rgb), 0.2); border-radius: 12px; padding: 24px; color: #e2e8f0; font-family: 'Bricolage Grotesque', sans-serif; line-height: 1.8; position: relative; margin-top: 20px;">
+                                <div style="position: absolute; top: -12px; right: 16px; background: #0a0a0f; padding: 2px 10px; font-size: 0.7rem; color: var(--accent-color); border: 1px solid rgba(var(--accent-rgb), 0.3); border-radius: 4px; font-family: 'JetBrains Mono';">
+                                    DRAFT_V1.0
+                                </div>
+                                ${data.response.replace(/\n/g, '<br>')}
+                            </div>
+
+                            <div class="stats-row" style="display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap;">
+                                <div class="stat-badge"><span>Engagement</span> <span class="stat-value" style="color:var(--accent-color)">High</span></div>
+                                <div class="stat-badge"><span>Tone Match</span> <span class="stat-value" style="color:#22c55e">100%</span></div>
+                                <div class="stat-badge"><span>Readability</span> <span class="stat-value">Fluid</span></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                resetChat(responseHtml);
+                reviewerContext = `(Earlier System Context: Agent Workspace initialized for person '${person}' with tone '${workspaceTone}'. Initial output: ${data.response})`;
+
+            } catch (error) {
+                console.error(error);
+                alert("Something went wrong during generation.");
+            } finally {
+                startBtn.disabled = false;
+                startBtn.innerText = "Initialize Workspace";
+            }
+        }
+
         async function sendMessage() { // Logic to manage conversational message submission stream
             const text = userInput.value.trim(); // Captures the user's typed input
             if (!text) return; // Ignores request if empty
@@ -2843,7 +3005,7 @@
             try {
                 let payloadContent = text;
                 let targetMode = currentMode;
-                if (currentMode === 'reviewer' && reviewerContext) {
+                if ((currentMode === 'reviewer' || currentMode === 'agent_workspace') && reviewerContext) {
                     payloadContent = `Context:\n${reviewerContext}\n\nQuestion: ${text}`;
                 }
                 if (currentMode === 'improver') {
@@ -2864,7 +3026,7 @@
                 const formattedResponse = data.response.replace(/\n/g, '<br>');
                 addMessage(formattedResponse, 'bot'); // Render actual AI response
 
-                if (currentMode === 'reviewer') {
+                if (currentMode === 'reviewer' || currentMode === 'agent_workspace') {
                     reviewerContext += `\nUser: ${text}\nAssistant: ${data.response}`;
                 }
 
@@ -2880,6 +3042,7 @@
                 if (currentMode === 'linkedin') sendBtn.innerText = 'Draft';
                 else if (currentMode === 'reviewer') sendBtn.innerText = 'Ask';
                 else if (currentMode === 'improver') sendBtn.innerText = 'Improve';
+                else if (currentMode === 'agent_workspace') sendBtn.innerText = 'Draft';
                 else sendBtn.innerText = 'Analyze';
 
                 userInput.focus();
